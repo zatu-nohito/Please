@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>RPG戦闘画面</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+    }
+
+    .battle-screen {
+      width: 400px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      background-color: #fff;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 10px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .button:hover {
+      background-color: #3e8e41;
+    }
+
+    .hp-bar {
+      width: 200px;
+      /* バーの幅 */
+      height: 20px;
+      /* バーの高さ */
+      background-color: #ccc;
+      /* バーの背景色 */
+      border-radius: 5px;
+      margin: 10px auto;
+      overflow: hidden;
+      /* はみ出した部分を隠す */
+    }
+
+    .hp-bar-fill {
+      height: 100%;
+      background-color: #4CAF50;
+      /* HPを表す部分の色 */
+      width: 0%;
+      /* 初期状態では0% */
+      transition: width 0.5s;
+      /* アニメーション効果 */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="battle-screen">
+    <h2>敵が現れた！</h2>
+    <p id="outPoin">!情報!</p>
+    <p id="outPoint">！情報！</p>
+
+    <h3>プレイヤー</h3>
+    <div class="hp-bar">
+      <div class="hp-bar-fill" id="playerHpBar"></div>
+    </div>
+    <p id="outPlayerHp"></p>
+
+    <h3>モンスター</h3>
+    <img src="onepiece01_luffy.png" alt="Photo of Monster">
+    <div class="hp-bar">
+      <div class="hp-bar-fill" id="monsterHpBar"></div>
+    </div>
+    <p id="outMonsterHp"></p>
+
+    <button class="button" id="atk">攻撃</button>
+    <button class="button" id="recovery">回復</button>
+
+    <script src="process.js"></script>
+    <script src="move.js"></script>
+  </div>
+  <h5>画像提供:いらすとや</h5>
+
+</body>
+
+</html>
