@@ -1,6 +1,9 @@
 'use strict';
-// OMHの初期表示でHPを表示
-document.getElementById('outMonsterHp').textContent = `HP:${MonsterHp}`;
+// ゲームを終わらせるときの関数↓
+function finGame(){
+  document.getElementById("atk").disabled = true;
+  document.getElementById("recovery").disabled = true;
+}
 
 function updateOutHp(){
   document.getElementById('outMonsterHp').textContent = `HP:${MonsterHp}`;
@@ -9,6 +12,7 @@ function updateOutHp(){
   console.log(`monsterのHPは${MonsterHp}です`);
 
 };
+updateOutHp();
 
 
 //Monster 実行をMonsterAttackdevで一括管理
@@ -27,7 +31,8 @@ if (MonsterHp > 50) {
     PlayerHp = 0;
     updateHpBars();
     document.getElementById('outPoint').textContent = `!LOSE!`;
-    updateOutHp()
+    updateOutHp();
+    finGame();
   }
 
 
@@ -39,23 +44,24 @@ if (MonsterHp > 50) {
     let MonsterRE = Number((Math.floor(Math.random() * 5)) + 3);
     MonsterHp += MonsterRE;
     document.getElementById('outPoint').textContent = `敵は${MonsterRE}point回復した`;
-    updateOutHp()
+    updateOutHp();
   } else {
     let Mattack = Number(Math.floor(Math.random() * 15));
     PlayerHp -= Mattack;
-    updateOutHp()
+    updateOutHp();
 
     if (PlayerHp > 0) {
       document.getElementById('outPoint').textContent = `敵から${Mattack}point,ダメージを受けた`;
       updateHpBars();
-      updateOutHp()
+      updateOutHp();
 
     } else {
       //Playerの体力が0以下になったとき
       PlayerHp = 0;
       updateHpBars();
       document.getElementById('outPoint').textContent = `!LOSE!`;
-      updateOutHp()
+      updateOutHp();
+      finGame();
     }
   }
 } else {
@@ -64,9 +70,11 @@ if (MonsterHp > 50) {
   let MonsterRE = Number((Math.floor(Math.random() * 5)) + 3);
   MonsterHp += MonsterRE;
   document.getElementById('outPoint').textContent = `敵は${MonsterRE}point回復した`;
-  updateOutHp()
+  updateOutHp();
 };
 };
+
+
 
 
 
@@ -84,7 +92,7 @@ document.getElementById('atk').addEventListener('click', () => {
     document.getElementById('outMonsterHp').textContent = `HP:${MonsterHp}`;
     document.getElementById('outPlayerHp').textContent =`HP:${PlayerHp}`;
     updateHpBars();
-    updateOutHp()
+    updateOutHp();
     //Monsterからの攻撃or回復
     MonsterAttackDev();
   } else {
@@ -94,7 +102,8 @@ document.getElementById('atk').addEventListener('click', () => {
     document.getElementById('outPoin').textContent = `!WIN!`;
     document.getElementById('outMonsterHp').textContent = `HP:${MonsterHp}`;
     updateHpBars();
-    updateOutHp()
+    updateOutHp();
+    finGame();
   }
 
 
@@ -110,7 +119,7 @@ document.getElementById('atk').addEventListener('click', () => {
       document.getElementById('outPlayerHp').textContent = `HP:${PlayerHp}`;
       MonsterAttackDev();
       updateHpBars();
-      updateOutHp()
+      updateOutHp();
       //Monsterからの攻撃or回復
     } else {
       // 1 >
@@ -121,7 +130,7 @@ document.getElementById('atk').addEventListener('click', () => {
       document.getElementById('outMonsterHp').textContent = `HP:${MonsterHp}`;
       MonsterAttackDev();
       updateHpBars();
-      updateOutHp()
+      updateOutHp();
     }
 
 });
